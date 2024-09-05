@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Usage Direct Plugin</string>
+
+    <string name="short_for_hours">h</string>
+    <string name="short_for_minutes">m</string>
+    <string name="short_for_seconds">s</string>
+
+    <string name="target_usage_direct_label">Usage Direct</string>
+    <string name="target_usage_direct_description">Shows the screen time from the Usage Direct app</string>
+    <string name="target_usage_direct_screen_time">Screen time</string>
+    <string name="target_usage_direct_missing">This Target requires the Usage Direct App</string>
+
+    <string name="complication_usage_direct_label">Usage Direct</string>
+    <string name="complication_usage_direct_description">Shows the screen time from the Usage Direct app</string>
+    <string name="complication_usage_direct_missing">This Complication requires the Usage Direct App</string>
+</resources>
