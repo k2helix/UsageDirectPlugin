@@ -3,7 +3,6 @@ package two.helix.smartspacer.usagedirect
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.VisibleForTesting
-import androidx.core.content.ContextCompat.startActivity
 import com.kieronquinn.app.smartspacer.sdk.provider.SmartspacerComplicationProvider
 import com.kieronquinn.app.smartspacer.sdk.provider.SmartspacerTargetProvider
 import com.kieronquinn.app.smartspacer.sdk.provider.SmartspacerWidgetProvider
@@ -56,45 +55,27 @@ class UsageDataImpl(private val context: Context): UsageData {
 
     override fun setRawTime(time: CharSequence) {
         val parts = time.split(":")
-        val hours: Int
-        val minutes: Int
-        val seconds: Int
 
         var formattedTime = ""
 
-        when (parts.size) {
-            3 -> {
-                hours = parts[0].toInt()
-                minutes = parts[1].toInt()
-                seconds = parts[2].toInt()
-                formattedTime += "${hours}${context.resources.getString(R.string.short_for_hours)} " +
-                                "${minutes}${context.resources.getString(R.string.short_for_minutes)}"
-            }
-            2 -> {
-                hours = parts[0].toInt()
-                minutes = parts[1].toInt()
-                seconds = 0
-                formattedTime += "${hours}${context.resources.getString(R.string.short_for_hours)} " +
-                                "${minutes}${context.resources.getString(R.string.short_for_minutes)}"
-            }
-            1 -> {
-                hours = parts[0].toInt()
-                minutes = 0
-                seconds = 0
-                formattedTime = "${hours}${context.resources.getString(R.string.short_for_hours)}"
-            }
-            else -> {
-                hours = 0
-                minutes = 0
-                seconds = 0
-            }
-        }
+        val hours: Int = (parts.getOrNull(0) ?: "0").toInt()
+        val minutes: Int = (parts.getOrNull(1) ?: "0").toInt()
+        val seconds: Int = (parts.getOrNull(2) ?: "0").toInt()
+
+        if (hours > 0)
+            formattedTime += "${hours}${context.resources.getString(R.string.short_for_hours)} "
+
+        if (minutes > 0)
+            formattedTime += "${minutes}${context.resources.getString(R.string.short_for_minutes)} "
+
+//        if (seconds > 0)
+//            formattedTime += "${seconds}${context.resources.getString(R.string.short_for_seconds)}"
 
         val launchIntent = context.packageManager.getLaunchIntentForPackage(UsageDirectProvider.PACKAGE_NAME)
 
         val localData = UsageData.UsageDataState(
             time,
-            formattedTime,
+            formattedTime.trim(),
             hours,
             minutes,
             seconds,
