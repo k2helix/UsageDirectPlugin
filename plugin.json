@@ -1,8 +1,8 @@
 {
 	"description": "Shows the screen time right in your home screen using the data provided by Usage Direct",
-	"download_url": "https://github.com/k2helix/UsageDirectPlugin/releases/download/v1.0/app-release.apk",
-	"version_code": 1,
-	"changelog": "First release!",
+	"download_url": "https://github.com/k2helix/UsageDirectPlugin/releases/download/v1.0.1/app-release.apk",
+	"version_code": 101,
+	"changelog": "Do not show hours/minutes if they are 0",
 	"required_package": "godau.fynn.usagedirect",
 	"minimum_smartspacer_version": 0,
 	"screenshots": ["https://github.com/k2helix/UsageDirectPlugin/raw/master/screenshots/usage_direct_target.png", "https://github.com/k2helix/UsageDirectPlugin/raw/master/screenshots/usage_direct_complication.png"]
